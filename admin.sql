@@ -1,9 +1,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for sys_menu
-
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
@@ -18,7 +16,7 @@ CREATE TABLE `sys_menu` (
 `orderNum` int(11) DEFAULT NULL COMMENT '排序',
 `created` datetime NOT NULL,
 `updated` datetime DEFAULT NULL,
-`statu` int(5) NOT NULL,
+`status` int(5) NOT NULL,
  PRIMARY KEY (`id`),
  UNIQUE KEY `name` (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
@@ -56,7 +54,7 @@ CREATE TABLE `sys_role` (
 `remark` varchar(64) DEFAULT NULL COMMENT '备注',
 `created` datetime DEFAULT NULL,
 `updated` datetime DEFAULT NULL,
-`statu` int(5) NOT NULL,
+`status` int(5) NOT NULL,
 PRIMARY KEY (`id`),
 UNIQUE KEY `name` (`name`) USING BTREE,
 UNIQUE KEY `code` (`code`) USING BTREE
@@ -121,7 +119,7 @@ CREATE TABLE `sys_user` (
 `created` datetime DEFAULT NULL,
 `updated` datetime DEFAULT NULL,
 `last_login` datetime DEFAULT NULL,
-`statu` int(5) NOT NULL,
+`status` int(5) NOT NULL,
 PRIMARY KEY (`id`),
 UNIQUE KEY `UK_USERNAME` (`username`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
