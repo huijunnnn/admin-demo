@@ -1,5 +1,7 @@
 package com.example.test.config;
 
+import com.example.test.security.LoginFailureHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +14,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableGlobalMethodSecurity(prePostEnabled = true)//开启基于方法的安全认证机制，也就是说在web层的controller启用注解机制的安全确认
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    LoginFailureHandler loginFailureHandler;
     private static final String[] URL_WHITELIST = {
             "/login",
             "/logout",
@@ -23,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //登陆配置
                .formLogin()
 //               .successHandler()
-//               .failureHandler()
+               .failureHandler(loginFailureHandler)
         //禁用session
                .and()
                .sessionManagement()
