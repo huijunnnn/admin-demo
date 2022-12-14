@@ -1,6 +1,7 @@
 package com.example.test.config;
 
 import com.example.test.security.LoginFailureHandler;
+import com.example.test.security.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,6 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     LoginFailureHandler loginFailureHandler;
+    @Autowired
+    LoginSuccessHandler loginSuccessHandler;
     private static final String[] URL_WHITELIST = {
             "/login",
             "/logout",
@@ -26,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
        http.cors().and().csrf().disable() //关闭csrf保护
         //登陆配置
                .formLogin()
-//               .successHandler()
+               .successHandler(loginSuccessHandler)
                .failureHandler(loginFailureHandler)
         //禁用session
                .and()
