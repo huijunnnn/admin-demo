@@ -1,4 +1,4 @@
-package com.example.test.config.lang;
+package com.example.test.common.lang;
 
 import lombok.Data;
 
